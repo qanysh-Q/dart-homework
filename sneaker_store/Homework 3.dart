@@ -1,3 +1,4 @@
+// 1. Abstract Class MediaItem
 abstract class MediaItem {
   String id;
   String title;
@@ -8,14 +9,14 @@ abstract class MediaItem {
   String getDetails();
 }
 
-
+// 3. Mixin Downloadable
 mixin Downloadable {
   void download(String title) {
     print('>> Initiating download for: $title...');
   }
 }
 
-
+// 2. Subclass Audiobook
 class Audiobook extends MediaItem with Downloadable {
   double durationHours;
   String narrator;
@@ -28,7 +29,7 @@ class Audiobook extends MediaItem with Downloadable {
   }
 }
 
-
+// 2. Subclass EBook
 class EBook extends MediaItem with Downloadable {
   double fileSizeMB;
   String author;
@@ -41,7 +42,7 @@ class EBook extends MediaItem with Downloadable {
   }
 }
 
-
+// 4. Class ShoppingCart
 class ShoppingCart {
   final List<MediaItem> _items = [];
 
