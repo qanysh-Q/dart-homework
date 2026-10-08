@@ -26,8 +26,8 @@ class ProfileCardScreen extends StatefulWidget {
 class _ProfileCardScreenState extends State {
   bool _isFollowing = false;
   int _followerCount = 2850;
-  bool _isLiked = false;
-  int _likesCount = 430;
+  
+  int _likesCount = 430; 
 
   void _toggleFollow() {
     setState(() {
@@ -36,18 +36,10 @@ class _ProfileCardScreenState extends State {
     });
   }
 
-  void _toggleLike() {
-    setState(() {
-      _isLiked = !_isLiked;
-      _likesCount += _isLiked ? 1 : -1;
-    });
-  }
-
   void _reset() {
     setState(() {
       _isFollowing = false;
       _followerCount = 2850;
-      _isLiked = false;
       _likesCount = 430;
     });
   }
@@ -114,6 +106,7 @@ class _ProfileCardScreenState extends State {
                   ],
                 ),
                 const SizedBox(height: 20),
+                
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -122,16 +115,21 @@ class _ProfileCardScreenState extends State {
                       icon: Icon(_isFollowing ? Icons.check : Icons.person_add),
                       label: Text(_isFollowing ? 'Following' : 'Follow'),
                     ),
+                    
                     OutlinedButton.icon(
-                      onPressed: _toggleLike,
-                      icon: Icon(
-                        _isLiked ? Icons.favorite : Icons.favorite_border,
-                        color: _isLiked ? Colors.red : Colors.grey,
-                      ),
-                      label: Text(_isLiked ? 'Liked' : 'Like'),
+                      onPressed: () => setState(() => _likesCount++), 
+                      icon: const Icon(Icons.thumb_up_alt_outlined, color: Colors.red),
+                      label: const Text('Like'),
+                    ),
+
+                    OutlinedButton.icon(
+                      onPressed: () => setState(() => _likesCount--), 
+                      icon: const Icon(Icons.thumb_down_alt_outlined, color: Colors.grey),
+                      label: const Text('Dislike'),
                     ),
                   ],
                 ),
+                
                 const SizedBox(height: 8),
                 TextButton(
                   onPressed: _reset,

@@ -10,8 +10,11 @@ double processOrder({
     discount = itemPrice * 0.10;
   }
 
-  // final delivery = deliveryFee ?? 500.0;
-    final delivery = (deliveryFee != null && deliveryFee <= 1000.0) ? deliveryFee : 1000.0;
+  final delivery = deliveryFee ?? 500.0;
+    if (deliveryFee <= 1000.0){
+      delivery = 1000.0;
+    }
+ 
 
 
   final finalTotal = itemPrice - discount + delivery;
